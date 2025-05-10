@@ -1,6 +1,5 @@
 import os
 import platform
-from time import sleep
 
 # Function to clear the screen based on the OS
 def clear_screen():
@@ -21,7 +20,8 @@ def get_age_input():
     while True:
         user_input = input("Please enter your age in years (or type 'q' to exit): ").strip()
 
-        if user_input.lower() == 'q':  # Allow exit with 'q'
+        # If the user wants to exit, return None
+        if user_input.lower() == 'q':  
             return None
 
         # Ensure the input is a positive number
@@ -58,8 +58,12 @@ def main():
 
         print("\nAmazing! Keep enjoying life! 🎉😊\n")
 
-        # Prompt to either continue or exit
-        input("Press Enter to calculate again, or type 'q' to exit. 🌟")
+        # Ask the user if they want to calculate again or exit
+        user_choice = input("Press Enter to calculate again, or type 'q' to exit. 🌟").strip().lower()
+
+        if user_choice == 'q':
+            print("\nThank you for using the Age Calculator! Have a wonderful day! 👋")
+            break
 
 if __name__ == "__main__":
     main()
