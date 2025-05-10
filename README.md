@@ -1,4 +1,3 @@
-readme_content = """
 # 🧮 Age in Months, Days, and Weeks Calculator
 
 A simple Python script that calculates your approximate age in **months**, **days**, and **weeks** based on the age you input in years.
