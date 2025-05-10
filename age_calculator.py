@@ -1,51 +1,65 @@
 import os
 import platform
+from time import sleep
 
+# Function to clear the screen based on the OS
 def clear_screen():
-    """Clears the terminal screen based on the operating system."""
+    """Clear the terminal screen based on the operating system."""
     os.system('cls' if platform.system() == 'Windows' else 'clear')
 
+# Function to calculate age metrics
 def calculate_age_metrics(age_years):
     """Calculate months, days, and weeks for the given age in years."""
     months = age_years * 12
-    days = age_years * 365.25  # Account for leap years by using an approximation
+    days = age_years * 365.25  # Account for leap years
     weeks = days // 7
     return months, days, weeks
 
+# Function to handle user input and validation
 def get_age_input():
     """Prompt the user for their age and validate the input."""
     while True:
-        user_input = input("Enter your age in years (or 'q' to exit): ").strip()
+        user_input = input("Please enter your age in years (or type 'q' to exit): ").strip()
 
-        if user_input.lower() == 'q':
+        if user_input.lower() == 'q':  # Allow exit with 'q'
             return None
 
+        # Ensure the input is a positive number
         if user_input.isdigit() and int(user_input) > 0:
             return int(user_input)
-        
-        print("\nInvalid input. Please enter a valid positive number or 'q' to exit.")
+
+        # Friendly error message for invalid input
+        print("\nOops! That doesn't seem like a valid age. Please enter a positive number (e.g., 25).")
         continue
 
+# Main function to run the age calculator
 def main():
     """Main function to run the age calculator program."""
     while True:
         clear_screen()
-        print("🧮 Age in Months, Days, and Weeks Calculator")
-        
+        print("🧮 **Age Calculator** 🎉\n")
+        print("Let's calculate how long you've been alive! Just enter your age in years. 😄\n")
+
+        # Get age input from the user
         age = get_age_input()
-        
-        if age is None:
-            print("Goodbye! 👋")
+
+        if age is None:  # If the user typed 'q', exit the program
+            print("\nThank you for using the Age Calculator! Have a wonderful day! 👋")
             break
-        
+
+        # Calculate the age in months, days, and weeks
         months, days, weeks = calculate_age_metrics(age)
 
-        print(f"\nYou have lived approximately:")
+        # Display the results in a friendly manner
+        print(f"\nYou have lived for approximately:\n")
         print(f"- {months} months")
-        print(f"- {days:.0f} days")  # Rounded to a whole number for better UX
-        print(f"- {weeks:.0f} weeks")  # Rounded to a whole number for better UX
-        
-        input("\nPress Enter to calculate again, or type 'q' to exit.")
+        print(f"- {days:.0f} days")  # Rounded for clarity
+        print(f"- {weeks:.0f} weeks")  # Rounded for clarity
+
+        print("\nAmazing! Keep enjoying life! 🎉😊\n")
+
+        # Prompt to either continue or exit
+        input("Press Enter to calculate again, or type 'q' to exit. 🌟")
 
 if __name__ == "__main__":
     main()
